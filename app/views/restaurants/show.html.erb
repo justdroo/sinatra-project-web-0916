@@ -1,0 +1,33 @@
+
+<p>
+  Name: <%= @restaurant.name%>
+</p>
+
+<p>
+  Rating: <%= @restaurant.rating%>
+</p>
+
+<p>
+  Address: <%= @restaurant.address%>
+</p>
+
+<p>
+  People who want to try:
+</p>
+
+<ul>
+  <% @users.each do |user|%>
+  <li><%= user.name %></li>
+  <%end%>
+</ul>
+
+Add To List of Restaurants to Try
+<form action="/restaurants/<%=@restaurant.id%>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <select name="restaurant[user_id]">
+    <% @users_all.each do |user|%>
+      <option value="<%=user.id%>"><%=user.name%></option>
+    <%end%>
+  </select>
+  <input type="submit"value="Submit">
+</form>
