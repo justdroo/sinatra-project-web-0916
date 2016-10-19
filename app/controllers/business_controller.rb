@@ -8,6 +8,7 @@ class BusinessController < ApplicationController
       @businesses = Business.all
     end
 
+    
 
     erb :'/businesses/index.html'
   end
@@ -23,7 +24,7 @@ class BusinessController < ApplicationController
     @business = Business.find(params[:id])
     @users = @business.users
     @users_all = User.all
-    
+
     erb :'/businesses/show.html'
   end
 

@@ -11,16 +11,24 @@ class YelpApi
        results = client.search(params[:search][:location],params[:search][:yelp_key] )
 
        results.businesses.map do |result|
-         if Business.find_by(yelp_id: result.id)
-           Business.find_by(yelp_id: result.id)
-         else
-           Business.create({
-             name: result.name,
-             address: result.location.address.join(", "),
-             rating: result.rating,
-             rating_img: result.rating_img_url,
-             yelp_id: result.id})
-         end #end if statement
+
+         @business = Business.find_or_create_by(yelp_id: result.id)
+            @business.name = result.name
+            @business.address = result.location.address.join(", ")
+            @business.rating = result.rating
+            @business.rating_img = result.rating_img_url
+        @business
+        #
+        #  if Business.find_by(yelp_id: result.id)
+        #    Business.find_by(yelp_id: result.id)
+        #  else
+        #    Business.create({
+        #      name: result.name,
+        #      address: result.location.address.join(", "),
+        #      rating: result.rating,
+        #      rating_img: result.rating_img_url,
+        #      yelp_id: result.id})
+        #  end #end if statement
 
        end #end do statement
    end #end self.search
