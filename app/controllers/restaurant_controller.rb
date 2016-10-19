@@ -1,7 +1,12 @@
 class RestaurantController < ApplicationController
 
   get '/restaurants' do
-    @restaurants = Restaurant.all
+    if params[:search]
+      @restaurants = [Restaurant.find_by(params[:search])] #building the array of business objects which you can find in the adapter folder.
+
+    else
+      @restaurants = Restaurant.all
+    end
     erb :'/restaurants/index.html'
   end
 
@@ -20,6 +25,7 @@ class RestaurantController < ApplicationController
     binding.pry
     erb :'/restaurants/results.html'
   end
+
 
   get '/restaurants/:id' do
     @restaurant = Restaurant.find(params[:id])
@@ -51,5 +57,7 @@ class RestaurantController < ApplicationController
 
     erb :'/restaurants/deleted.html'
   end
+
+
 
 end

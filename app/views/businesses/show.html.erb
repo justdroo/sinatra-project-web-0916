@@ -1,0 +1,48 @@
+<a href="/businesses">See All businesses</a>
+<a href="/users">See All Users</a>
+<a href="/users/new">Add User</a>
+
+
+<p>
+  Name: <%= @business.name%>
+</p>
+
+<p>
+  Rating: <%= @business.rating%>
+</p>
+
+<p>
+  Address: <%= @business.address%>
+</p>
+
+<p>
+  People who want to try:
+</p>
+
+<ul>
+  <% @users.each do |user|%>
+  <li><%= user.name %></li>
+  <%end%>
+</ul>
+
+Add To List of businesses to Try
+<form action="/businesses/<%=@business.id%>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <select name="business[user_id]">
+    <% @users_all.each do |user|%>
+      <option value="<%=user.id%>"><%=user.name%></option>
+    <%end%>
+  </select>
+  <input type="submit"value="Submit">
+</form>
+
+
+<p>
+  <a href="/businesses/<%=@business.id%>/edit">Edit this business</a>
+</p>
+
+<form action="/businesses/<%=@business.id%>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete this business">
+</form>
