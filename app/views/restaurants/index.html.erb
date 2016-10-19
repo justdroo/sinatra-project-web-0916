@@ -1,1 +1,10 @@
-<h1>HI! IM WORKING!</h1>
+<a href="/restaurants">See All Restaurants</a>
+<a href="/users">See All Users</a>
+<a href="/users/new">Add User</a>
+<a href="/restaurants/new">Add Restaurants</a>
+
+<ul>
+  <% @restaurants.each do |restaurant|%>
+  <li><a href="/restaurants/<%=restaurant.id %>"><%= restaurant.name%></a></li>
+  <%end%>
+</ul>

@@ -1,3 +1,17 @@
+<a href="/restaurants">See All Restaurants</a>
+<a href="/users">See All Users</a>
+<a href="/users/new">Add User</a>
+<a href="/restaurants/new">Add Restaurants</a>
+
+<h3>Search for Restaurant</h3>
+<form action="/restaurants/search" method="get">
+
+City:  <input type="text" name="search[city]">
+Cuisine:  <input type="text" name="search[cuisine]">
+<input type="submit" value="Search">
+
+</form>
+
 <h3>Add Restaurant</h3>
 
 <form action="/restaurants" method="post">

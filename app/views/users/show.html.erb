@@ -1,3 +1,28 @@
+<a href="/restaurants">See All Restaurants</a>
+<a href="/users">See All Users</a>
+<a href="/users/new">Add User</a>
+<a href="/restaurants/new">Add Restaurants</a>
+
 <p>
   Name: <%= @user.name%>
 </p>
+
+<p>
+  Restaurants:
+</p>
+
+<ul>
+  <% @restaurants.each do |restaurant|%>
+  <li><%= restaurant.name %></li>
+  <%end%>
+</ul>
+
+<p>
+  <a href="/users/<%=@user.id%>/edit">Edit this user</a>
+</p>
+
+<form action="/users/<%=@user.id%>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete this User">
+</form>

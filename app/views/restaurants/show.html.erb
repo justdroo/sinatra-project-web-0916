@@ -1,3 +1,7 @@
+<a href="/restaurants">See All Restaurants</a>
+<a href="/users">See All Users</a>
+<a href="/users/new">Add User</a>
+<a href="/restaurants/new">Add Restaurants</a>
 
 <p>
   Name: <%= @restaurant.name%>
@@ -30,4 +34,15 @@ Add To List of Restaurants to Try
     <%end%>
   </select>
   <input type="submit"value="Submit">
+</form>
+
+
+<p>
+  <a href="/restaurants/<%=@restaurant.id%>/edit">Edit this Restaurant</a>
+</p>
+
+<form action="/restaurants/<%=@restaurant.id%>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete this Restaurant">
 </form>

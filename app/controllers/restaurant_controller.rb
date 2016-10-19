@@ -1,6 +1,7 @@
 class RestaurantController < ApplicationController
 
   get '/restaurants' do
+    @restaurants = Restaurant.all
     erb :'/restaurants/index.html'
   end
 
@@ -13,6 +14,12 @@ class RestaurantController < ApplicationController
     redirect "/restaurants/#{@restaurant.id}"
   end
 
+  get '/restaurants/search' do
+    @client = Yelp.client
+
+    binding.pry
+    erb :'/restaurants/results.html'
+  end
 
   get '/restaurants/:id' do
     @restaurant = Restaurant.find(params[:id])
@@ -26,6 +33,23 @@ class RestaurantController < ApplicationController
     redirect "/restaurants/#{params[:id]}"
   end
 
+  get '/restaurants/:id/edit' do
+    @restaurant = Restaurant.find(params[:id])
+    erb :"/restaurants/edit.html"
+  end
 
+  patch '/restaurants/:id/edit' do
+    @restaurant = Restaurant.find(params[:id])
+
+    @restaurant.update(params[:restaurant])
+    redirect "/restaurants/#{@restaurant.id}"
+  end
+
+  delete '/restaurants/:id' do
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.destroy
+
+    erb :'/restaurants/deleted.html'
+  end
 
 end
