@@ -10,10 +10,13 @@ class YelpApi
     def self.search(params)
        results = client.search(params[:search][:location],params[:search][:yelp_key] )
        results.businesses.map do |result|
+         
          Business.create({
            name: result.name,
            address: result.location.address.join(", "),
-           rating: result.rating})
+           rating: result.rating,
+           rating_img: result.rating_img_url,
+           yelp_id: result.id})
        end
    end
 end

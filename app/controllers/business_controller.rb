@@ -7,6 +7,8 @@ class BusinessController < ApplicationController
     else
       @businesses = Business.all
     end
+
+    binding.pry
     erb :'/businesses/index.html'
   end
 
@@ -21,6 +23,7 @@ class BusinessController < ApplicationController
     @business = Business.find(params[:id])
     @users = @business.users
     @users_all = User.all
+    binding.pry
     erb :'/businesses/show.html'
   end
 
