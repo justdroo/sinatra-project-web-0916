@@ -3,6 +3,17 @@
 <a href="/users/new">Add User</a>
 <a href="/restaurants/new">Add Restaurants</a>
 
+<form action="/restaurants" method="get">
+Name: <input type="text" name= "search[name]">
+ <input type="submit" value="Search">
+</form>
+
+<form action="/restaurants" method="get">
+Rating: <input type="text" name= "search[rating]">
+ <input type="submit" value="Search">
+</form>
+
+
 <ul>
   <% @restaurants.each do |restaurant|%>
   <li><a href="/restaurants/<%=restaurant.id %>"><%= restaurant.name%></a></li>

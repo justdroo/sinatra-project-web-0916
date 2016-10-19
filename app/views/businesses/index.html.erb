@@ -1,0 +1,16 @@
+<a href="/restaurants">See All Restaurants</a>
+<a href="/users">See All Users</a>
+<a href="/users/new">Add User</a>
+<a href="/restaurants/new">Add Restaurants</a>
+
+<form action="/businesses" method="get">
+ City: <input type="text" name= "search[location]">
+ Cuisine: <input type="text" name= "search[yelp_key][term]">
+ <input type="submit" value="Search">
+</form>
+
+<ul>
+  <% @businesses.each do |business|%>
+  <li><a href="/businesses/<%=business.id %>"><%= business.name%></a></li>
+  <%end%>
+</ul>
